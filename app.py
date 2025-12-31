@@ -64,7 +64,8 @@ def train_lstm(df):
 # ================= FUNCTION 3: GET SENTIMENT =================
 @st.cache_resource
 def get_sentiment_model():
-    return pipeline("sentiment-analysis", model="ProsusAI/finbert")
+    # Added framework="pt" to force PyTorch and avoid the TensorFlow crash
+    return pipeline("sentiment-analysis", model="ProsusAI/finbert", framework="pt")
 
 # ================= MAIN LOGIC =================
 if st.button("Analyze Stock"):
